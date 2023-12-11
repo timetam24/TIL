@@ -2,30 +2,12 @@ import "./App.css";
 import { useState } from "react";
 import ImageCropDialog from "./ImageCropDialog";
 
-const initData = [
-  {
-    id: 1,
-    imageUrl: "images/easyCrop/flower1.jpg",
-    croppedImageUrl: null,
-  },
-  {
-    id: 2,
-    imageUrl: "images/easyCrop/flower2.jpg",
-    croppedImageUrl: null,
-  },
-  {
-    id: 3,
-    imageUrl: "images/easyCrop/flower3.jpg",
-    croppedImageUrl: null,
-  },
-  {
-    id: 4,
-    imageUrl: "images/easyCrop/flower4.jpg",
-    croppedImageUrl: null,
-  },
-];
-
 function App() {
+  const initData = {
+    imageUrl: "images/easyCrop/flower5.jpg",
+    croppedImageUrl: null,
+  };
+
   const [flowers, setFlowers] = useState(initData);
   const [selectedFlower, setSelectedFlower] = useState(null);
 
@@ -33,48 +15,74 @@ function App() {
     setSelectedFlower(null);
   };
 
-  const setCroppedImageFor = (id, crop, zoom, aspect, croppedImageUrl) => {
-    const newflowersList = [...flowers];
-    const flowerIndex = flowers.findIndex((x) => x.id === id);
-    const flower = flowers[flowerIndex];
-    const newFlower = { ...flower, croppedImageUrl, crop, zoom, aspect };
-    newflowersList[flowerIndex] = newFlower;
-    setFlowers(newflowersList);
+  const setCroppedImageFor = (crop, zoom, croppedImageUrl) => {
+    const newFlower = { ...flowers, croppedImageUrl, crop, zoom };
+
+    setFlowers(newFlower);
     setSelectedFlower(null);
   };
 
-  const resetImage = (id) => {
-    setCroppedImageFor(id);
+  const onReset = () => {
+    setFlowers(initData);
+    setSelectedFlower(null);
+  };
+
+  const onSelectFile = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () =>
+        setSelectedFlower({
+          ...flowers,
+          imageUrl: reader.result?.toString() || "",
+        })
+      );
+      reader.readAsDataURL(e.target.files[0]);
+    }
   };
 
   return (
     <div>
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: "10rem",
+        }}
+      >
+        <label htmlFor="flowerImg">
+          <img
+            src={
+              flowers.croppedImageUrl
+                ? flowers.croppedImageUrl
+                : flowers.imageUrl
+            }
+            alt=""
+            style={{
+              objectFit: "cover",
+              borderRadius: "50%",
+              height: "200px",
+              width: "200px",
+            }}
+          />
+        </label>
+
+        <input
+          type="file"
+          id="flowerImg"
+          accept="image/*"
+          onChange={onSelectFile}
+          style={{ display: "none" }}
+        />
+      </div>
       {selectedFlower ? (
         <ImageCropDialog
-          id={selectedFlower.id}
           imageUrl={selectedFlower.imageUrl}
           cropInit={selectedFlower.crop}
           zoomInit={selectedFlower.zoom}
-          aspectInit={selectedFlower.aspect}
           onCancel={onCancel}
           setCroppedImageFor={setCroppedImageFor}
-          resetImage={resetImage}
+          onReset={onReset}
         />
       ) : null}
-      {flowers.map((flower) => (
-        <div className="imageCard" key={flower.id}>
-          <img
-            src={
-              flower.croppedImageUrl ? flower.croppedImageUrl : flower.imageUrl
-            }
-            alt=""
-            onClick={() => {
-              console.log(flower);
-              setSelectedFlower(flower);
-            }}
-          />
-        </div>
-      ))}
     </div>
   );
 }
