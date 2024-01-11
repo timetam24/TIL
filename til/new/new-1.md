@@ -4,8 +4,8 @@ React를 사용하는 팀 프로젝트 내에서 이미지 크롭 기능을 추�
 
 <br/>
 
-1. [react-easy-crop](https://www.npmjs.com/package/react-easy-crop)
-2. [react-image-crop](https://www.npmjs.com/package/react-image-crop)
+🔗 [react-easy-crop](https://www.npmjs.com/package/react-easy-crop)  
+🔗 [react-image-crop](https://www.npmjs.com/package/react-image-crop)
 
 <br/>
 
@@ -31,40 +31,41 @@ react-image-crop은 구형 브라우저 지원이 가능하다는 점이 끌린�
 ---
 
 <br/>
-+ 2023-12-12
+
+## 성공🎉
+
+react-easy-crop 라이브러리를 사용하여 이미지 크롭 기능에 성공했다!
+
+👉 [팀프로젝트에 적용 완료한 PR 보러가기](https://github.com/FRONTENDSCHOOL7/final-18-moamoa/pull/331)
 
 <br/>
-<br/>
 
-react-easy-crop 라이브러리를 사용하여 이미지 크롭 기능에 성공했다🎉   
-아래는 참고한 레퍼런스들이다
+## 참고 레퍼런스
 
-<br/>
-
-- [react-easy-crop 공식 레포](https://github.com/ValentinH/react-easy-crop)
+🔗 [react-easy-crop 공식 레포](https://github.com/ValentinH/react-easy-crop)
 
 <br/>
   
-- [Learn How to Crop Images With React Easy Crop](https://www.youtube.com/watch?v=E_AHkWHhUz4&t=369s)
+🔗 [Learn How to Crop Images With React Easy Crop](https://www.youtube.com/watch?v=E_AHkWHhUz4&t=369s)
   - react-easy-crop을 사용해서 application 만들기
   - 해당 라이브러리를 어떻게 사용해야 하는지 흐름과 방향성을 이해하는데 도움 받았다
  
 <br/>
     
-- [Image Manipulation With React-Easy-Crop](https://blog.openreplay.com/image-manipulation-with-react-easy-crop/)
+🔗 [Image Manipulation With React-Easy-Crop](https://blog.openreplay.com/image-manipulation-with-react-easy-crop/)
   - 커스텀할 때 유용했던 포스트
   - Cropper의 다양한 props를 어떻게 쓰는지 배울 수 있다
  
 <br/>
     
-- [Creating an Image Upload Modal with Crop and Rotate Functionality in React](https://dev.to/mizanrifat/creating-an-image-upload-modal-with-crop-and-rotate-functionality-in-react-5cbd)
+🔗 [Creating an Image Upload Modal with Crop and Rotate Functionality in React](https://dev.to/mizanrifat/creating-an-image-upload-modal-with-crop-and-rotate-functionality-in-react-5cbd)
   - 크롭 완료한 이미지가 원형이 아닌 사각형으로 떠서 헤매던 중 발견한 포스트
   - canvas로 어떻게 그려야 원형으로 나오는지 크롭된 이미지 크기를 어떻게 고정해야할지 배울 수 있었다
 
 <br/>
 <br/>
 
-## 결과물
+## 테스트 결과물
 
 |                                            크롭 이미지 저장                                            |                                     취소 & 기본 프로필 이미지 리셋                                     |
 | :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
