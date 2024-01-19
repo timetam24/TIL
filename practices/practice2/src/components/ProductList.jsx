@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchProducts } from "../data/firestore";
+import { formatPrice } from "../util/formatPrice";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -26,7 +27,7 @@ const ProductList = () => {
           </div>
           <div className="flex justify-center gap-2">
             <span>{product.name}</span>
-            <span>{product.price}</span>
+            <span>{formatPrice(product.price)}</span>
           </div>
         </li>
       ))}
