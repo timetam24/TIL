@@ -7,8 +7,6 @@
 <details>
   <summary>버튼 클릭 시 어느 핸들러가 작동할까?</summary>
 
-<br/>
-
 ```
 export default function Toolbar() {
   return (
@@ -31,16 +29,18 @@ export default function Toolbar() {
 }
 ```
 
-⚠️ 부여된 JSX 태그 내에서만 실행되는 onScroll을 제외한 React 내의 모든 이벤트는 전파된다
-
 </details>
+
+<br/>
+
+```
+⚠️ 부여된 JSX 태그 내에서만 실행되는 onScroll을 제외한 React 내의 모든 이벤트는 전파된다
+```
 
 <br/>
 
 <details>
   <summary>이벤트 전파 멈추려면?</summary>
-
-<br/>
 
 ```
 function Button({ onClick, children }) {
@@ -71,7 +71,8 @@ export default function Toolbar() {
 
 ```
 
-→ 이벤트 핸들러가 매개변수로 받는 이벤트 오브젝트를 사용하여 전파를 막을 수 있다. `e.stopPropagation()` 호출하여 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추기!
+이벤트 핸들러가 매개변수로 받는 이벤트 오브젝트를 사용하여 전파를 막을 수 있다.  
+`e.stopPropagation()` 호출하여 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추기!
 
 </details>
 
@@ -81,15 +82,12 @@ export default function Toolbar() {
 
 컴포넌트가 다시 렌더링 될 때 기억해야 하는 정보가 있다면 state 변수를 사용한다.
 
-컴포넌트에서 서로 연관이 없는 경우 여러 개의 state 변수를 가지는 것이 좋다. 하지만 두 state 변수가 자주 함께 변경된다면 하나로 합치는 것이 더 좋을 수 있다.  
-ex. 필드가 많은 폼의 경우 필드 별로 state 변수를 사용하는 것보다 하나의 객체 state 변수를 사용하는 것이 더 편리하다.
+컴포넌트에서 서로 연관이 없는 경우 여러 개의 state 변수를 가지는 것이 좋다. 하지만 두 state 변수가 자주 함께 변경된다면 하나로 합치는 것이 더 좋을 수 있다. 필드가 많은 폼의 경우 필드 별로 state 변수를 사용하는 것보다 하나의 객체 state 변수를 사용하는 것이 더 편리하다.
 
 State는 컴포넌트 인스턴스에 지역적이다. 동일한 컴포넌트를 두 번 렌더링한다면 각각의 복사본은 고유한 state를 가진다.
 
 <details>
   <summary>state1️⃣과 state2️⃣는 서로 독립적이다.</summary>
-
-  <br/>
 
 ```
 import Gallery from './Gallery.js';
@@ -141,8 +139,6 @@ export default function Page() {
 
 <details>
   <summary>ex)</summary>
-
-<br/>
 
 ```
 import Gallery from './Gallery.js';
@@ -231,8 +227,6 @@ prop, 이벤트 핸들러, 로컬 변수는 모두 렌더링 당시의 state를 
 <details>
 <summary>ex)</summary>
 
-<br/>
-
 ```
 import { useState } from 'react';
 
@@ -254,7 +248,7 @@ export default function Counter() {
 
 ```
 
-→ 해당 렌더링의 onClick 내에서, setNumber(number + 5)가 호출된 후에도 number의 값은 계속 0이다.  
+해당 렌더링의 onClick 내에서, setNumber(number + 5)가 호출된 후에도 number의 값은 계속 0이다.  
 이 값은 컴포넌트를 호출해 React가 UI의 “스냅샷을 찍을” 때 “고정”된 값이다.
 
  </details>
@@ -307,8 +301,6 @@ setPosition({...position, x: 5}); ✅
 
 <details>
 <summary>여러 필드에 단일 이벤트 핸들러 사용하기 </summary>
-
-<br/>
 
 ```
 import { useState } from 'react';
@@ -371,8 +363,6 @@ export default function Form() {
 
 <details>
 <summary>라이브러리 Immer</summary>
-
-<br/>
 
 ```
 import { useImmer } from 'use-immer';
@@ -457,7 +447,7 @@ export default function Form() {
 }
 ```
 
-→ Immer는 업데이트 핸들러를 간결하게 관리할 수 있으며 특히 state가 중첩되어 있고 객체를 복사하는 것이 중복되는 코드를 만들 때 유용하다.
+Immer는 업데이트 핸들러를 간결하게 관리할 수 있으며 특히 state가 중첩되어 있고 객체를 복사하는 것이 중복되는 코드를 만들 때 유용하다.
 
  </details>
 
@@ -475,8 +465,6 @@ export default function Form() {
 
 <details>
 <summary>ex)</summary>
-
-<br/>
 
 ```
 import { useState } from 'react';
