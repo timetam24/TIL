@@ -7,6 +7,8 @@
 <details>
   <summary>버튼 클릭 시 어느 핸들러가 작동할까?</summary>
 
+<br/>
+
 ```
 export default function Toolbar() {
   return (
@@ -29,16 +31,16 @@ export default function Toolbar() {
 }
 ```
 
+⚠️ 부여된 JSX 태그 내에서만 실행되는 onScroll을 제외한 React 내의 모든 이벤트는 전파된다
+
 </details>
 
 <br/>
 
-```
-⚠️ 부여된 JSX 태그 내에서만 실행되는 onScroll을 제외한 React 내의 모든 이벤트는 전파된다
-```
-
 <details>
   <summary>이벤트 전파 멈추려면?</summary>
+
+<br/>
 
 ```
 function Button({ onClick, children }) {
@@ -85,7 +87,9 @@ ex. 필드가 많은 폼의 경우 필드 별로 state 변수를 사용하는 �
 State는 컴포넌트 인스턴스에 지역적이다. 동일한 컴포넌트를 두 번 렌더링한다면 각각의 복사본은 고유한 state를 가진다.
 
 <details>
-  <summary>1️⃣,2️⃣ state는 서로 독립적이다.</summary>
+  <summary>state1️⃣과 state2️⃣는 서로 독립적이다.</summary>
+
+  <br/>
 
 ```
 import Gallery from './Gallery.js';
@@ -93,8 +97,8 @@ import Gallery from './Gallery.js';
 export default function Page() {
   return (
     <div className="Page">
-      <Gallery /> 1️⃣ 컴포넌트 안의 state
-      <Gallery /> 2️⃣ 컴포넌트 안의 state
+      <Gallery /> 컴포넌트 안의 state1️⃣
+      <Gallery /> 컴포넌트 안의 state2️⃣
     </div>
   );
 }
@@ -111,11 +115,11 @@ export default function Page() {
 컴포넌트를 화면에 표시하기 이전에 React에서 렌더링을 해야 한다.
 
 ```
-<React 앱의 화면 업데이트를 위한 단계>
+<React 앱의 화면 업데이트를 위한 3단계>
 
-1단계: 렌더링 트리거
-2단계: React 컴포넌트 렌더링
-3단계: React가 DOM에 변경사항을 커밋
+1️⃣ 렌더링 트리거
+2️⃣ React 컴포넌트 렌더링
+3️⃣ React가 DOM에 변경사항을 커밋
 ```
 
 <br>
@@ -137,6 +141,8 @@ export default function Page() {
 
 <details>
   <summary>ex)</summary>
+
+<br/>
 
 ```
 import Gallery from './Gallery.js';
@@ -225,6 +231,8 @@ prop, 이벤트 핸들러, 로컬 변수는 모두 렌더링 당시의 state를 
 <details>
 <summary>ex)</summary>
 
+<br/>
+
 ```
 import { useState } from 'react';
 
@@ -268,13 +276,20 @@ React는 state 업데이트를 하기 전에 이벤트 핸들러의 모든 코�
 
 </details>
 
+<br/>
+
 ### 다음 렌더링 전에 동일한 state 변수를 여러 번 업데이트 하려면?
 
 ```
 setNumber(number + 1) 와 같이 다음 state 값을 전달하는 대신, setNumber(n => n + 1) 처럼 이전 큐의 state를 기반으로 다음 state를 계산하는 업데이터 함수를 전달한다.
 ```
 
-이벤트 핸들러가 완료되면 React는 리렌더링을 실행한다. 리렌더링하는 동안 React는 큐를 처리한다.  
+<br/>
+
+이벤트 핸들러가 완료되면 React는 리렌더링을 실행한다. 리렌더링하는 동안 React는 큐를 처리한다.
+
+<br/>
+
 ⚠️ 업데이터 함수(`n => n + 1`)는 렌더링 중에 실행되므로, <b>업데이터 함수는 순수해야 하며 결과만 반환</b> 해야 한다. 업데이터 함수 내부에서 state를 변경하거나 다른 사이드 이팩트를 실행해서는 안 된다!
 
 <br/>
@@ -292,6 +307,8 @@ setPosition({...position, x: 5}); ✅
 
 <details>
 <summary>여러 필드에 단일 이벤트 핸들러 사용하기 </summary>
+
+<br/>
 
 ```
 import { useState } from 'react';
@@ -348,10 +365,14 @@ export default function Form() {
 
 </details>
 
+<br/>
+
 ### 복잡한 state 구조, 편하게 중첩 전개하는 방법 없을까?
 
 <details>
 <summary>라이브러리 Immer</summary>
+
+<br/>
 
 ```
 import { useImmer } from 'use-immer';
@@ -444,7 +465,7 @@ export default function Form() {
 
 ## 7) 배열 State 업데이트하기
 
-배열을 업데이트할 때마다 새 배열을 state 설정 함수에 전달해야 한다.
+배열을 업데이트할 때마다 배열을 변경하는 것이 아니라 새 배열을 state 설정 함수에 전달해야 한다.
 
 |           | 원본 배열을 수정하지 않고 새 배열 반환 |
 | :-------: | :------------------------------------: |
@@ -454,6 +475,8 @@ export default function Form() {
 
 <details>
 <summary>ex)</summary>
+
+<br/>
 
 ```
 import { useState } from 'react';
