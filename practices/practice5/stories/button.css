@@ -1,7 +1,6 @@
 .storybook-button {
-  font-family: "Poppins", sans-serif;
   font-weight: 700;
-  border: 2px solid rgb(var(--border-rgb));
+  border: 2px solid rgb(var(--button-border-rgb));
   border-radius: 2em;
   cursor: pointer;
   display: inline-block;
@@ -14,12 +13,12 @@
   outline: 2px solid rgb(var(--foreground-rgb));
 }
 .storybook-button--primary {
-  background-color: rgb(var(--primary-rgb));
+  background-color: rgb(var(--button-primary-rgb));
 }
 .storybook-button--primary:hover,
 .storybook-button--primary:focus,
 .storybook-button--primary:active {
-  background-color: rgb(var(--interact-rgb));
+  background-color: rgb(var(--button-primary-interact-rgb));
 }
 .storybook-button--secondary {
   color: #333;
