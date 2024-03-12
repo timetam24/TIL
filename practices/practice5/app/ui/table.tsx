@@ -1,17 +1,22 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Product } from "../type";
 import styles from "./table.module.css";
 import { useState } from "react";
 interface FilterableProductTableProp {
   products: Product[];
 }
-interface ProductTableProp {
-  products: Product[];
+interface ProductTableProp extends FilterableProductTableProp {
   filterText: string;
   inStockOnly: boolean;
 }
+
+interface SearchBarProp {
+  onFilterTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInStockOnlyChange: () => void;
+}
+
 interface ProductRowProp {
   product: Product;
 }
@@ -45,13 +50,7 @@ export default function FilterableProductTable({
   );
 }
 
-function SearchBar({
-  onFilterTextChange,
-  onInStockOnlyChange,
-}: {
-  onFilterTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onInStockOnlyChange: () => void;
-}) {
+function SearchBar({ onFilterTextChange, onInStockOnlyChange }: SearchBarProp) {
   return (
     <div className={styles.searchBar}>
       <input
@@ -66,7 +65,7 @@ function SearchBar({
 }
 
 function ProductTable({ products, filterText, inStockOnly }: ProductTableProp) {
-  const rows: ReactNode[] = [];
+  const rows: ReactElement[] = [];
   let lastCategory: string | null = null;
 
   products.forEach((product) => {
