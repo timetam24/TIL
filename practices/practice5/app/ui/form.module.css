@@ -1,0 +1,13 @@
+.form {
+  width: 25rem;
+  height: 80vh;
+  background-color: rgb(var(--warp-drive-rgb));
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  color: black;
+}

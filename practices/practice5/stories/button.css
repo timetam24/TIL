@@ -1,6 +1,6 @@
 .storybook-button {
   font-weight: 700;
-  border: 2px solid rgb(var(--button-border-rgb));
+  border: 0;
   border-radius: 2em;
   cursor: pointer;
   display: inline-block;
