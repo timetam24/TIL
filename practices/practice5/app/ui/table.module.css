@@ -1,0 +1,42 @@
+.filterableTable {
+  width: 20rem;
+  border: 0;
+  background-color: #a3a0f2;
+  box-shadow: 0 0 1px 1px #a3a0f2;
+  border-radius: 20px;
+  color: black;
+}
+
+.searchBar {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: min-content auto;
+  gap: 5px;
+}
+
+.searchBar input[type="text"] {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid #a2bdf2;
+  color: inherit;
+  grid-column: span 2;
+}
+
+.searchBar input[type="checkbox"] {
+  height: min-content;
+  align-self: center;
+}
+
+.searchBar input:focus,
+.searchBar input:active {
+  outline: 2px solid #f2f2f2;
+}
+
+.productTable {
+  background-color: #a2bdf2;
+  width: 90%;
+  margin: 0 auto 20px auto;
+  border: 2px solid black;
+  border-radius: 10px;
+}

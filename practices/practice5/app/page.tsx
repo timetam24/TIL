@@ -1,10 +1,20 @@
-import Form from "@/app/ui/form";
+import FilterableProductTable from "./ui/table";
 import styles from "./page.module.css";
+import { Product } from "./type";
+
+const PRODUCTS: Product[] = [
+  { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+  { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+  { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+  { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+  { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+  { category: "Vegetables", price: "$1", stocked: true, name: "Peas" },
+];
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Form />
+      <FilterableProductTable products={PRODUCTS} />
     </main>
   );
 }
