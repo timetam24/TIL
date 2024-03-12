@@ -1,39 +1,81 @@
+"use client";
+
 import { ReactNode } from "react";
 import { Product } from "../type";
 import styles from "./table.module.css";
-
-interface ProductTableProp {
+import { useState } from "react";
+interface FilterableProductTableProp {
   products: Product[];
 }
-
+interface ProductTableProp {
+  products: Product[];
+  filterText: string;
+  inStockOnly: boolean;
+}
 interface ProductRowProp {
   product: Product;
 }
 
-export default function FilterableProductTable({ products }: ProductTableProp) {
+export default function FilterableProductTable({
+  products,
+}: FilterableProductTableProp) {
+  const [filterText, setFilterText] = useState("");
+  const [inStockOnly, setInStockOnly] = useState(false);
+
+  const onFilterTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterText(e.target.value);
+  };
+
+  const onInStockOnlyChange = () => {
+    setInStockOnly((prev) => !prev);
+  };
+
   return (
     <div className={styles.filterableTable}>
-      <SearchBar />
-      <ProductTable products={products} />
+      <SearchBar
+        onFilterTextChange={onFilterTextChange}
+        onInStockOnlyChange={onInStockOnlyChange}
+      />
+      <ProductTable
+        products={products}
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+      />
     </div>
   );
 }
 
-function SearchBar() {
+function SearchBar({
+  onFilterTextChange,
+  onInStockOnlyChange,
+}: {
+  onFilterTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInStockOnlyChange: () => void;
+}) {
   return (
     <div className={styles.searchBar}>
-      <input type="text" placeholder="Search..." />
-      <input type="checkbox" id="checkStock" />
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={onFilterTextChange}
+      />
+      <input type="checkbox" id="checkStock" onChange={onInStockOnlyChange} />
       <label htmlFor="checkStock">Only show products in stock</label>
     </div>
   );
 }
 
-function ProductTable({ products }: ProductTableProp) {
+function ProductTable({ products, filterText, inStockOnly }: ProductTableProp) {
   const rows: ReactNode[] = [];
   let lastCategory: string | null = null;
 
   products.forEach((product) => {
+    if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+      return;
+    }
+    if (inStockOnly && !product.stocked) {
+      return;
+    }
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow
