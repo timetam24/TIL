@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArtPiece } from "../type";
+import Card from "../components/card";
 
 function getImageUrl(imageId: string) {
   return process.env.IMAGE_URL + imageId + ".jpg";
@@ -13,7 +14,7 @@ export default function ArtPiece({
   imageSize = 350,
 }: ArtPiece) {
   return (
-    <section>
+    <Card>
       <figure
         style={{
           display: "flex",
@@ -33,6 +34,6 @@ export default function ArtPiece({
           {name}, {createdYear}, {ingredients.join(", ")}
         </figcaption>
       </figure>
-    </section>
+    </Card>
   );
 }
