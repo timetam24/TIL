@@ -1,0 +1,25 @@
+.title {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

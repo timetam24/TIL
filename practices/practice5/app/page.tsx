@@ -1,11 +1,10 @@
-import FilterableProductTable from "./ui/table";
 import styles from "./page.module.css";
-import { PRODUCTS } from "./data";
+import Gallery from "./ui/gallery";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <FilterableProductTable products={PRODUCTS} />
+      <Gallery />
     </main>
   );
 }
