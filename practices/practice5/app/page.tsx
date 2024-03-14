@@ -1,10 +1,9 @@
 import styles from "./page.module.css";
-import RequestTracker from "./ui/request-tracker";
-
+import ShoppingCart from "./ui/shopping-cart";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <RequestTracker />
+      <ShoppingCart />
     </main>
   );
 }
