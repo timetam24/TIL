@@ -1,9 +1,10 @@
 import styles from "./page.module.css";
-import ShoppingCart from "./ui/shopping-cart";
+import TaskApp from "./ui/task-app";
+
 export default function Home() {
   return (
     <main className={styles.main}>
-      <ShoppingCart />
+      <TaskApp />
     </main>
   );
 }
