@@ -1,10 +1,10 @@
 import styles from "./page.module.css";
-import TaskApp from "./ui/task-app";
+import Form from "./ui/declarative-form";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <TaskApp />
+      <Form />
     </main>
   );
 }

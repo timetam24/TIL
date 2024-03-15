@@ -1,0 +1,79 @@
+.form {
+  width: 40rem;
+  height: 20rem;
+  padding: 2rem 1.5rem;
+  background-color: #f2dfd8;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #092616;
+}
+
+.title {
+  width: 70%;
+  text-transform: uppercase;
+  font-weight: bold;
+  white-space: pre-wrap;
+  font-size: 2.5rem;
+}
+
+.textInputContainer {
+  align-self: flex-end;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.25rem;
+}
+
+.textInput {
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  padding: 5px;
+  border: 0;
+  border-bottom: 1px solid #092616;
+  width: 12rem;
+  outline: 0;
+}
+
+.textInput:focus,
+.textInput:active {
+  transform: translateY(-1px);
+  border-bottom: 1.5px solid #092616;
+}
+
+.submitButton {
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  padding: 5px 7px;
+  border: 1px solid #092616;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.submitButton:hover,
+.submitButton:focus,
+.submitButton:active {
+  background-color: #092616;
+  color: #f2dfd8;
+}
+
+@media screen and (min-width: 455px) and (max-width: 542px) {
+  .title {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .title {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .title {
+    font-size: 2.25rem;
+  }
+}
