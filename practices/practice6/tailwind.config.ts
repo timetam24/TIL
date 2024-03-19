@@ -12,10 +12,16 @@ const config: Config = {
       fontFamily: {
         inter: ["var(--font-inter)"],
         haviland: ["var(--font-mr-de-haviland)"],
+        uniform: ["var(--font-uniform-pro)"],
       },
       colors: {
         apricot: "#f2dfd8",
         "dark-green": "#092616",
+        pink: "#FF99FF",
+        "light-pink": "#FFC2FF",
+        purple: "#747dff",
+        "light-purple": "#C5C0FF",
+        "neon-yellow": "#dff600",
       },
     },
   },

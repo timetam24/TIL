@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { inter, mrDeHaviland } from "@/lib/fonts";
+import { inter, mrDeHaviland, uniformPro } from "../lib/fonts";
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${mrDeHaviland.variable}`}>
+      <body
+        className={`${inter.variable} ${mrDeHaviland.variable} ${uniformPro.variable}`}
+      >
         {children}
       </body>
     </html>
