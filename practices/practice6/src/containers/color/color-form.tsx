@@ -6,20 +6,24 @@ import clsx from "clsx";
 
 export default function ColorForm() {
   const [color, setColor] = useState("");
-  const [status, setStatus] = useState("disabled");
+  const [status, setStatus] = useState(""); // 'typing', 'submitting', or 'success'
+  const [error, setError] = useState(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
-    setStatus(e.target.value.length !== 0 ? "typing" : "disabled");
+    setStatus(e.target.value && "typing");
   };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus("submitting");
     try {
       const response = await axios.post("/api/color", { color });
       console.log(response.data);
-    } catch (error) {
+      setStatus("success");
+    } catch (error: any) {
       console.error(error);
+      setError(error);
     }
   };
 
@@ -28,6 +32,7 @@ export default function ColorForm() {
       className="w-[40rem] h-80 py-8 px-6 bg-apricot rounded-md flex flex-col justify-between text-dark-green"
       onSubmit={submitForm}
     >
+      {status}
       <h1 className="uppercase font-bold whitespace-pre-wrap text-4xl min-[542px]:w-[70%] min-[455px]:w-[85%] max-[455px]:w-[100%] max-[353px]:text-3xl">
         What&#39;s your favorite{" "}
         <span className="font-haviland font-normal">c</span>
@@ -45,11 +50,10 @@ export default function ColorForm() {
             "text-dark-green font-semibold bg-apricot py-1 px-2 border-2 border-solid border-dark-green rounded-md cursor-pointer  hover:bg-dark-green hover:text-apricot focus:bg-dark-green focus:text-apricot active:bg-dark-green active:text-apricot transition-all duration-200 ease-in-out  focus-visible:outline-none focus-visible:ring-offset-apricot focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-dark-green ",
             {
               "bg-dark-green text-red-100": status === "typing",
-              "disabled:pointer-events-none disabled:opacity-50":
-                status === "disabled",
+              "disabled:pointer-events-none disabled:opacity-50": color === "",
             }
           )}
-          disabled={status === "disabled"}
+          disabled={color === ""}
         >
           Submit
         </button>
