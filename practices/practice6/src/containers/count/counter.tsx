@@ -3,7 +3,7 @@
 import { useState } from "react";
 import clsx from "clsx";
 
-export default function Counter({ isFancy }: { isFancy: boolean }) {
+export default function Counter() {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
 
@@ -18,11 +18,7 @@ export default function Counter({ isFancy }: { isFancy: boolean }) {
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
-      <h1
-        className={clsx("font-inter font-extrabold text-5xl mt-20", {
-          "text-red-700": isFancy,
-        })}
-      >
+      <h1 className="font-inter font-extrabold text-5xl mt-20 text-black">
         {score}
       </h1>
       <button
