@@ -4,36 +4,21 @@ import Counter from "@/containers/count/counter";
 import { useState } from "react";
 
 export default function CountPage() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPaused(e.target.checked);
-  };
+  const [isPlayerA, setIsPlayerA] = useState(true);
 
   return (
-    <div className="flex gap-12 justify-center min-h-screen items-center bg-black text-white">
-      {isPaused ? <p>See you later!</p> : <Counter />}
-      {/* ↑ 같은 자리의 다른 컴포넌트 ↑*/}
-      <Label isPaused={isPaused} onchange={handleChange} />
+    <div className="flex flex-col gap-12 justify-center min-h-screen items-center bg-black text-white">
+      {isPlayerA && <Counter person="Taylor" />}
+      {!isPlayerA && <Counter person="Sarah" />}
+      {/* ↑ 같은 위치에서 State 초기화하기 ↑ */}
+      <button
+        onClick={() => {
+          setIsPlayerA(!isPlayerA);
+        }}
+        className="bg-white text-black px-4 py-1 rounded font-uniform text-2xl hover:bg-red-500"
+      >
+        NEXT PLAYER
+      </button>
     </div>
-  );
-}
-
-interface LabelProps {
-  isPaused: boolean;
-  onchange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-function Label({ isPaused, onchange }: LabelProps) {
-  return (
-    <label>
-      <input
-        type="checkbox"
-        className="font-inter mr-1"
-        checked={isPaused}
-        onChange={onchange}
-      />
-      Take a break
-    </label>
   );
 }
