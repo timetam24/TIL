@@ -1,37 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useReducer } from "react";
 import AddTask from "@/containers/task/add-task";
 import TaskList from "@/containers/task/task-list";
+import taskReducer from "@/containers/task/task-reducer";
 
 export default function TaskPage() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
 
   function handleAddTask(text: string) {
-    setTasks([
-      ...tasks,
-      {
-        id: nextId++,
-        text: text,
-        done: false,
-      },
-    ]);
+    dispatch({ type: "added", id: nextId++, text });
   }
 
   function handleChangeTask(task: TaskI) {
-    setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return task;
-        } else {
-          return t;
-        }
-      })
-    );
+    dispatch({ type: "changed", task });
   }
 
   function handleDeleteTask(taskId: number) {
-    setTasks(tasks.filter((t) => t.id !== taskId));
+    dispatch({ type: "deleted", id: taskId });
   }
 
   return (
