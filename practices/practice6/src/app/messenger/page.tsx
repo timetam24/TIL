@@ -1,27 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useReducer } from "react";
 import Chat from "@/containers/messenger/chat";
 import ContactList from "@/containers/messenger/contact-list";
+import {
+  initialState,
+  messengerReducer,
+} from "@/containers/messenger/messenger-reducer";
 
 export default function MessengerPage() {
-  const [to, setTo] = useState(contacts[0]);
+  const [state, dispatch] = useReducer(messengerReducer, initialState);
+
+  const message = state.messages[state.selectedId];
+  const contact = contacts.find((c) => c.id === state.selectedId);
+
   return (
     <main className="font-uniform flex flex-col min-h-screen sm:flex-row">
       <ContactList
         contacts={contacts}
-        selectedContact={to}
-        onSelect={(contact) => setTo(contact)}
+        selectedId={state.selectedId}
+        dispatch={dispatch}
       />
-      <Chat key={to.id} contact={to} />
-      {/* Chat 컴포넌트에 key를 주어서 하위 트리가 초기화되도록 한다.
-          다른 수신자를 선택할 때마다 Chat 컴포넌트의 State는 초기화되어서
-          수신자를 바꿀 때마다 입력란은 비워진다.
-      */}
+      <Chat
+        key={contact?.id}
+        message={message || ""}
+        contact={contact as Contact | undefined}
+        dispatch={dispatch}
+      />
     </main>
   );
 }
-
 export interface Contact {
   id: number;
   name: string;

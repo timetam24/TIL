@@ -1,15 +1,15 @@
 import { Contact } from "@/app/messenger/page";
-
+import clsx from "clsx";
 interface ContactListProps {
-  selectedContact: Contact;
   contacts: Contact[];
-  onSelect: (contact: Contact) => void;
+  selectedId: number;
+  dispatch: React.Dispatch<any>;
 }
 
 export default function ContactList({
-  selectedContact,
   contacts,
-  onSelect,
+  selectedId,
+  dispatch,
 }: ContactListProps) {
   return (
     <section className="bg-blue-50 w-full sm:w-60 border-r-2">
@@ -17,12 +17,18 @@ export default function ContactList({
         {contacts.map((contact) => (
           <li key={contact.id}>
             <button
-              className="bg-white w-full min-h-full py-2 rounded hover:bg-black text-lg text-center text-black hover:text-white border-2 sm:px-0 px-7"
+              className={clsx(
+                " w-full min-h-full py-2 rounded hover:bg-black text-lg text-center hover:text-white border-2 sm:px-0 px-7 font-inter",
+                {
+                  "bg-black text-white": selectedId === contact.id,
+                  "bg-white text-black": selectedId !== contact.id,
+                }
+              )}
               onClick={() => {
-                onSelect(contact);
+                dispatch({ type: "changed_selection", contactId: contact.id });
               }}
             >
-              {contact.name}
+              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
             </button>
           </li>
         ))}
