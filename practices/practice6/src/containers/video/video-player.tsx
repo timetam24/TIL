@@ -1,40 +1,43 @@
 "use client";
 
-import { useState, useRef } from "react";
-import clsx from "clsx";
+import { useEffect, useRef } from "react";
 
-export default function VideoPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
+interface VideoPlayerProps {
+  isPlaying: boolean;
+  src: string;
+}
+
+export default function VideoPlayer({ isPlaying, src }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  function handleClick() {
-    const nextIsPlaying = !isPlaying;
-    setIsPlaying(nextIsPlaying);
-    nextIsPlaying ? videoRef.current!.play() : videoRef.current!.pause();
-  }
+  useEffect(() => {
+    if (isPlaying) {
+      console.log("video.play() 호출");
+      videoRef.current!.play();
+    } else {
+      console.log("video.pause() 호출");
+      videoRef.current!.pause();
+    }
+    console.log(
+      "의존성 배열이 있는 useEffect라면 컴포넌트가 마운트될 때 실행되고 isPlaying이 변경된다면 실행됩니다."
+    );
+  }, [isPlaying]);
+
+  // useEffect(() => {
+  //   console.log(
+  //     "의존성 배열이 없는 useEffect라면 모든 렌더링이 끝나고 실행됩니다."
+  //   );
+  // });
+
+  // useEffect(() => {
+  //   console.log(
+  //     "빈 의존성 배열이 있는 useEffect라면 컴포넌트가 마운트될 때 실행됩니다."
+  //   );
+  // }, []);
 
   return (
-    <div className="flex flex-col gap-10 p-4 rounded-2xl ">
-      <video
-        width="800"
-        ref={videoRef}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-      >
-        <source
-          src="https://videos.pexels.com/video-files/2025634/2025634-hd_1280_720_25fps.mp4"
-          type="video/mp4"
-        />
-      </video>
-      <button
-        onClick={handleClick}
-        className={clsx("rounded py-2 text-xl uppercase font-uniform", {
-          "bg-[#ceedd5]": isPlaying,
-          "bg-[#f597a7]": !isPlaying,
-        })}
-      >
-        {isPlaying ? "Pause" : "Play"}
-      </button>
-    </div>
+    <video width="800" ref={videoRef}>
+      <source src={src} type="video/mp4" />
+    </video>
   );
 }
