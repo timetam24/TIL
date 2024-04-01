@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NewTodo from "@/containers/effect/new-todo";
-import { initialTodos, createTodo } from "@/containers/effect/todos";
+import { initialTodos } from "@/containers/effect/todos";
 
 export interface Todo {
   id: number;
@@ -13,21 +13,8 @@ export interface Todo {
 export default function EffectPage() {
   const [todos, setTodos] = useState(initialTodos);
   const [showActive, setShowActive] = useState(false);
-  const [activeTodos, setActiveTodos] = useState([]);
-  const [visibleTodos, setVisibleTodos] = useState([]);
-  const [footer, setFooter] = useState(null);
-
-  useEffect(() => {
-    setActiveTodos(todos.filter((todo) => !todo.completed));
-  }, [todos]);
-
-  useEffect(() => {
-    setVisibleTodos(showActive ? activeTodos : todos);
-  }, [showActive, todos, activeTodos]);
-
-  useEffect(() => {
-    setFooter(<footer>{activeTodos.length} todos left</footer>);
-  }, [activeTodos]);
+  const activeTodos = todos.filter((todo) => !todo.completed);
+  const visibleTodos = showActive ? activeTodos : todos;
 
   return (
     <>
@@ -39,15 +26,15 @@ export default function EffectPage() {
         />
         Show only active todos
       </label>
-      <NewTodo onAdd={(newTodo) => setTodos([...todos, newTodo])} />
+      <NewTodo onAdd={(newTodo: Todo) => setTodos([...todos, newTodo])} />
       <ul>
-        {visibleTodos.map((todo) => (
+        {visibleTodos.map((todo: Todo) => (
           <li key={todo.id}>
             {todo.completed ? <s>{todo.text}</s> : todo.text}
           </li>
         ))}
       </ul>
-      {footer}
+      <footer>{activeTodos.length} todos left</footer>
     </>
   );
 }
